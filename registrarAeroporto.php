@@ -5,7 +5,7 @@
 	$cidade = $_POST["cidade"];
 	$nomeArpt = $_POST["nomeArpt"];
 
-	$query ="SELECT * FROM aeroportos";
+	$query ="SELECT * FROM aeroporto";
     $result = $conn->query($query);
       
     $options= mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -25,7 +25,7 @@
     	};
     };
 
-$sql = "INSERT INTO aeroportos (cidade, nome) VALUES ('$cidade', '$nomeArpt')";
+$sql = "INSERT INTO aeroporto (cidade, nome) VALUES ('$cidade', '$nomeArpt')";
 
 if (mysqli_query($conn, $sql)) {
   echo '<script>alert("Registrado com sucesso"); window.location.replace("registroAeroporto.php");</script>';   

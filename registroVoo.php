@@ -3,7 +3,7 @@ include('conexao.php');
 include('menu.php'); 
 
 
-    $query ="SELECT * FROM aeroportos";
+    $query ="SELECT * FROM aeroporto";
     $result = $conn->query($query);
     if($result->num_rows> 0){
       $options= mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -18,7 +18,54 @@ include('menu.php');
 <head>
 	<title>Registrar Voo</title>
 	
-	</script>
+	<script>
+
+
+
+
+function teste(){
+
+var pegaDia = document.getElementById("dia").value;
+
+const d = new Date(pegaDia);
+let day = d.getDay()
+x = document.getElementById("diaSem").innerHTML;
+
+if(day == "0"){
+	x = "segunda";
+}
+
+if(day == "1"){
+	x = "terça";
+}
+
+if(day == "2"){
+	x = "quarta";
+}
+
+if(day == "3"){
+	x = "quinta";
+}
+
+if(day == "4"){
+	x = "sexta";
+}
+
+if(day == "5"){
+	x = "sabado";
+}
+
+if(day == "6"){
+	x = "domingo";
+}
+
+
+document.getElementById("diaSem").innerHTML = x;
+document.querySelector('#diaSem').value = x;
+alert(x);
+	
+}
+</script>
 </head>
 <body onload="check()">
 </br></br>
@@ -36,7 +83,7 @@ include('menu.php');
   						foreach ($options as $option) {
 						?>
 
-   						<option><?php echo $option['nome']; ?> </option>
+   						<option value="<?php echo $option['idAeroporto']; ?>"><?php echo $option['nome']; ?> </option>
    						<?php 
    							}
   						?>
@@ -58,7 +105,7 @@ include('menu.php');
   						foreach ($options as $option) {
 						?>
 
-   						<option><?php echo $option['nome']; ?> </option>
+   						<option value="<?php echo $option['idAeroporto']; ?>"><?php echo $option['nome']; ?> </option>
 
    						<?php 
    							}
@@ -80,7 +127,7 @@ include('menu.php');
   						foreach ($options as $option) {
 						?>
 
-   						<option><?php echo $option['nome']; ?> </option>
+   						<option value="<?php echo $option['idAeroporto']; ?>"><?php echo $option['nome']; ?> </option>
 
    						<?php 
    							}
@@ -101,11 +148,14 @@ include('menu.php');
 			</tr>
 			<tr>
 				<td>Dia da Viagem</td>
-				<td><input type="date" name="dia"></td>
+				<td><input type="date" name="dia" id="dia" onblur="teste()"></td>
 			</tr>
 			<tr>
 				<td>Vagas</td>
 				<td><input type="number" name="vagas"></td>
+			</tr>
+			<tr>
+				<td><input type="hidden" id="diaSem" name="diaSem" ></td>
 			</tr>
 			<tr>
 				<td><input type="submit"></td>

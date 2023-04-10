@@ -4,11 +4,11 @@ include('menu.php');
 
 $id = $_GET['id'];
      
-    $query = "SELECT * FROM voos WHERE id = $id";
+    $queryVoos = "SELECT * FROM voo WHERE idVoo = $id";
 
-    $result = $conn->query($query);
+    $resultVoos = $conn->query($queryVoos);
       
-    $options= mysqli_fetch_all($result, MYSQLI_ASSOC);
+    $optionsVoos= mysqli_fetch_all($resultVoos, MYSQLI_ASSOC);
 
 
 ?>
@@ -35,20 +35,20 @@ $id = $_GET['id'];
             <td>Vagas Disponíveis</td>
         </tr>
 
-    <?php foreach ($options as $option){ ?>
+    <?php foreach ($optionsVoos as $optionVoos){ ?>
 
     <tr>
             
-                <td><?php echo $option['aeroportoOrigem'];?></td>
-                <td><?php echo $option['horarioSaida'];?></td>
-                <td><?php echo $option['aeroportoDestino'];?></td>
-                <td><?php echo $option['horarioChegada'];?></td>
-                <td><?php echo $option['aeroportoTrecho'];?></td>
-                <td><?php echo $option['horarioTrecho'];?></td>
-                <td><?php echo $option['aeronave'];?></td>
-                <td><?php echo $option['aeronaveTroca'];?></td>
-                <td><?php echo $option['dia'];?></td>
-                <td><?php echo $option['vagasDisponiveis'];?></td>
+                <td><?php $idSaida = $optionVoos['arptSaida'];$queryArpt ="SELECT * FROM aeroporto WHERE idAeroporto = $idSaida "; $resultArpt = $conn->query($queryArpt); $optionsArpt= mysqli_fetch_all($resultArpt, MYSQLI_ASSOC); foreach ($optionsArpt as $optionArpt){echo $optionArpt['nome'];};?></td>
+                <td><?php echo $optionVoos['hrrSaida'];?></td>
+                <td><?php $idTrecho = $optionVoos['arptTrecho'];$queryArpt ="SELECT * FROM aeroporto WHERE idAeroporto = $idTrecho "; $resultArpt = $conn->query($queryArpt); $optionsArpt= mysqli_fetch_all($resultArpt, MYSQLI_ASSOC); foreach ($optionsArpt as $optionArpt){echo $optionArpt['nome'];};?></td>
+                <td><?php echo $optionVoos['hrrTrecho'];?></td>
+                <td><?php $idChegada = $optionVoos['arptChegada'];$queryArpt ="SELECT * FROM aeroporto WHERE idAeroporto = $idChegada "; $resultArpt = $conn->query($queryArpt); $optionsArpt= mysqli_fetch_all($resultArpt, MYSQLI_ASSOC); foreach ($optionsArpt as $optionArpt){echo $optionArpt['nome'];};?></td>
+                <td><?php echo $optionVoos['hrrChegada'];?></td>
+                <td><?php echo $optionVoos['arnv'];?></td>
+                <td><?php echo $optionVoos['arnvTroca'];?></td>
+                <td><?php echo $optionVoos['dia'];?></td>
+                <td><?php echo $optionVoos['vagasDsp'];?></td>
                
     </tr>
     <?php

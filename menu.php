@@ -3,8 +3,6 @@
 echo "<center><table>
 	<tr>
 		<td>
-			<a href='registroReserva.php'><button>Registrar Reserva</button></a>
-		</td><td>
 			<a href='registroVoo.php'><button>Registrar Voo</button></a>
 		</td><td>
 			<a href='registroAeroporto.php'><button>Registrar Aeroporto</button></a>
